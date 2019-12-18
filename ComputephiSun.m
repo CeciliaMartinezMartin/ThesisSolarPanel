@@ -17,7 +17,7 @@
 
 function phiSun = ComputephiSun (t, days, hdays, rango, data, do)
     phiSunMoon = ComputephiSunAbsolute(t, days, hdays, rango);
-    phiSunRover = ComputephiRover (data, t);
+    phiSunRover = data(t);
     phiSun = phiSunMoon-phiSunRover;
     phiSun = phiSun - do.subs*2*pi + do.add*2*pi;
 end
