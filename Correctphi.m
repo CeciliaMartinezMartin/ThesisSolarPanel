@@ -1,9 +1,12 @@
 % This file contains a function that modifies the input angle so that it is
 % within the range.
+
 % [phi, do] = Correctphi(phi,range)
+
 % Inputs:   phi: angle that potentially needs to be modified (in rad)
 %           range:  0 for angle between -pi and pi
 %                   1 for angles between 0 and 2*pi
+
 % Outputs:  phi: the modified angle
 %           do: the operations done to the angle
 %               do.add: number of times that 2pi has been added
