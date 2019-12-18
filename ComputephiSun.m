@@ -15,14 +15,9 @@
 
 % Output:   phiSun: orientation of the Sun w.r.t Rover
 
-
-function phiSun = ComputephiSun (t, iter, days, hdays, rango, data, do)
+function phiSun = ComputephiSun (t, days, hdays, rango, data, do)
     phiSunMoon = ComputephiSunAbsolute(t, days, hdays, rango);
     phiSunRover = ComputephiRover (data, t);
-%     phiSunRover = 1.2*sin(1.5*t);
-%     phiSunRover = -2*t;
     phiSun = phiSunMoon-phiSunRover;
-%     phiSun = 160.*ones(size(t))*2*pi/360;
     phiSun = phiSun - do.subs*2*pi + do.add*2*pi;
-
 end
