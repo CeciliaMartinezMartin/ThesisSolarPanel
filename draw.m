@@ -1,4 +1,4 @@
-
+% Plot current signal
 subplot(4,3,1)
 plot(timecontrol(2:end), icontrol(2:end), 'r')
 hold on
@@ -7,6 +7,7 @@ hold off
 title('Current');
 xlim ([0, Tcontrol + N*ts]);
 
+% Plot phi signal
 subplot(4,3,10:11)
 plot(timecontrol(2:end), phicontrol(2:end), 'r', 0:tsim:(size(phihist, 2)-1)*tsim, phihist, 'b')
 title('Angular position');
@@ -19,13 +20,13 @@ legend('PhiPanel','Implemented', 'PhiSunTemp', 'PhiSunHorizon', 'PhiSun', 'Locat
 hold off;
 xlim ([0, Tcontrol + N*ts]);
 
-
+% Plot power signal
 subplot(4,3,2)
 plot(timecontrol(2:end), ucontrol(2:end).*icontrol(2:end), 'r', 0:tsim:(size(phist, 2)-1)*tsim, phist, 'b')
 title('Power');
 xlim ([0, Tcontrol + N*ts]);
 
-
+% Plot control signal
 subplot(4,3,4)
 stairs(timecontrol(1:end-1), ucontrol(2:end), 'r')
 hold on;
@@ -34,19 +35,19 @@ title('Control');
 hold off;
 xlim ([0, Tcontrol + N*ts]);
 
-
+% Plot consumed energy signal
 subplot(4,3,[3 6])
 plot(timecontrol(2:end), eccontrol(2:end), 'r', 0:tsim:(size(echist, 2)-1)*tsim, echist, 'b')
 title('Consumed Energy');
 xlim ([0, Tcontrol + N*ts]);
 
-
+% Plot produced energy signal
 subplot(4,3,[9 12])
 plot(timecontrol(2:end), epcontrol(2:end), 'r', 0:tsim:(size(ephist, 2)-1)*tsim, ephist, 'b')
 title('Generated Energy');
 xlim ([0, Tcontrol + N*ts]);
 
-
+% Plot efficiency signal
 subplot(4,3,5)
 stairs(timecontrol(2:end), ComputeEff(phicontrol(2:end)',ComputephiSun(ts*(iter+1):ts:N*ts+ts*(iter),iter, days, hdays, rango, func, do), flageff), 'r')
 hold on
@@ -55,6 +56,7 @@ hold off
 title('Efficiency');
 xlim ([0, Tcontrol + N*ts]);
 
+% Plot angular speed signal
 subplot(4, 3, 7:8)
 plot(timecontrol(2:end), wcontrol(2:end), 'r', 0:tsim:(size(whist, 2)-1)*tsim, whist, 'b')
 title('Speed');
