@@ -13,7 +13,7 @@ plot(timecontrol(2:end), phicontrol(2:end), 'r', 0:tsim:(size(phihist, 2)-1)*tsi
 title('Angular position');
 hold;
 time = 0:ts:Tcontrol+N*ts;
-phisunplot = ComputephiSun(0:ts:Tcontrol+N*ts, iter, days, hdays, rango, func, do);
+phisunplot = ComputephiSun(0:ts:Tcontrol+N*ts, days, hdays, rango, func, do);
 plot(time, phisunplot, 'y', ts*(1+iter:iter+N),phisunplot((2+iter):iter+N+1),'g')
 plot(data.t, ComputephiSunAbsolute(0:20:Tcontrol+N*ts, days, hdays, rango)-data.phi, 'k');
 legend('PhiPanel','Implemented', 'PhiSunTemp', 'PhiSunHorizon', 'PhiSun', 'Location', 'southwest');
@@ -49,7 +49,7 @@ xlim ([0, Tcontrol + N*ts]);
 
 % Plot efficiency signal
 subplot(4,3,5)
-stairs(timecontrol(2:end), ComputeEff(phicontrol(2:end)',ComputephiSun(ts*(iter+1):ts:N*ts+ts*(iter),iter, days, hdays, rango, func, do), flageff), 'r')
+stairs(timecontrol(2:end), ComputeEff(phicontrol(2:end)',ComputephiSun(ts*(iter+1):ts:N*ts+ts*(iter), days, hdays, rango, func, do), flageff), 'r')
 hold on
 stairs(0:tsim:(size(effhist, 2)-1)*tsim, effhist, 'b')
 hold off
