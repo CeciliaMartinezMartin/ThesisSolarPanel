@@ -1,9 +1,26 @@
+% This file contains a function that computes a sequence of angles of the
+% Rover w.r.t. the Moon for several time points
+
+% data = ComputephiRoverEq (RovPos, v, Tcontrol, tsamp, initpos)
+
+% Inputs:   RovPos: movement of the Rover (func.handle)(y = f(x)) (m)
+%           v: speed of the Rover (m/s)
+%           Tcontrol: total time of simulation (s)
+%           (tsamp): sampling time for the angle computation (s)
+%               default: every 4m
+%           (initpos): initial x coordinate of the Rover (m)
+%               default: x = 0
+
+% Output:  data:
+%               data.t: time points for which an angle is calculated
+%               data.phi: angle for each time point
+
 function data = ComputephiRoverEq (RovPos, v, Tcontrol, tsamp, initpos)
     if (nargin < 5)
         initpos = 0;
     end
     if (nargin < 4)
-        tsamp = 1;
+        tsamp = 4/v;
     end
     if (nargin <3)
         error ('Missing some input arguments')
@@ -43,7 +60,6 @@ function data = ComputephiRoverEq (RovPos, v, Tcontrol, tsamp, initpos)
        a = double(b2);
        ts = [ts ts(end)+tsamp];
        i = i+1;
-%        time(i) = i*tsamp;
     end
     eqn = int (sqrt((fdiff(x)^2 +1)), a, b) == lengthShort;
     bsol = vpasolve (eqn, b);
@@ -59,7 +75,4 @@ function data = ComputephiRoverEq (RovPos, v, Tcontrol, tsamp, initpos)
     data.t = ts;
     
     disp('...DONE!');
-%     curve = fit(ts', phi', 'smoothingspline');
-% %     plot(ts, phi);
-%     f = curve;
 end
